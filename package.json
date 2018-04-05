@@ -6,12 +6,15 @@
   "scripts": {
     "css-build": "node-sass css/src/style.scss css/dist/style.css",
     "css-deploy": "npm run css-build && npm run css-postcss",
-    "css-postcss": "postcss --use autoprefixer --output css/dist/main.css css/dist/main.css",
+    "css-postcss":
+      "postcss --use autoprefixer --output css/dist/main.css css/dist/main.css",
     "css-watch": "npm run css-build -- --watch",
     "deploy": "npm run css-deploy && npm run js-build",
     "js-build": "babel js/src --out-dir js/dist",
     "js-watch": "npm run js-build -- --watch",
-    "start": "npm run css-watch | npm run js-watch"
+    "watch": "npm run css-watch | npm run js-watch",
+    "serve": "http-server",
+    "start": "npm run serve"
   },
   "repository": {
     "type": "git",
@@ -26,12 +29,13 @@
   "homepage": "https://github.com/mariofink/ud_map#readme",
   "dependencies": {},
   "devDependencies": {
-    "node-sass": "^4.8.3",
     "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015-ie": "^6.7.0",
     "bulma": "^0.6.0",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.8.3",
     "postcss-cli": "^4.1.1"
   }
 }
