@@ -4,7 +4,9 @@
   "description": "Udacity NanoDegree Neighbourhood Map project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watchCss": "node-sass css/src/style.scss css/dist/style.css -w",
+    "buildCss":
+      "node-sass css/src/style.scss css/dist/style.css --output-style compressed"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/mariofink/ud_map/issues"
   },
-  "homepage": "https://github.com/mariofink/ud_map#readme"
+  "homepage": "https://github.com/mariofink/ud_map#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.8.3"
+  }
 }
