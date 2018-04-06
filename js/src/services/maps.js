@@ -21,19 +21,15 @@ export default class MapService {
   }
 
   performSearch(request) {
-    this.service.nearbySearch(request, (results, status) =>
-      this.callback(results, status)
-    );
-  }
-
-  callback(results, status) {
-    if (status !== google.maps.places.PlacesServiceStatus.OK) {
-      console.error(status);
-      return;
-    }
-    for (var i = 0, result; (result = results[i]); i++) {
-      this.addMarker(result);
-    }
+    return new Promise((resolve, reject) => {
+      this.service.nearbySearch(request, (results, status) => {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          reject(status);
+        }
+        resolve(results);
+      });
+    });
   }
 
   addMarker(place) {

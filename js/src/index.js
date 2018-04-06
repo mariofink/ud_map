@@ -10,7 +10,11 @@ window.initMap = () => {
         keyword: "Restaurant",
         type: "restaurant"
       };
-      mapSvc.performSearch(request);
+      mapSvc.performSearch(request).then(results => {
+        for (var i = 0, result; (result = results[i]); i++) {
+          mapSvc.addMarker(result);
+        }
+      });
     }
   });
 };
