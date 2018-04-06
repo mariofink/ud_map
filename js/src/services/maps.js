@@ -5,8 +5,6 @@ var geocoder;
 
 export default class MapService {
   constructor(options) {
-    console.info("init map");
-
     this.map = new google.maps.Map(options.element, {
       center: options.location,
       zoom: 15
@@ -14,10 +12,14 @@ export default class MapService {
 
     this.infoWindow = new google.maps.InfoWindow();
     this.service = new google.maps.places.PlacesService(this.map);
+  }
 
-    // The idle event is a debounced event, so we can query & listen without
-    // throwing too many requests at the server.
-    this.map.addListener("idle", () => options.onIdle(this));
+  init() {
+    return new Promise((resolve, reject) => {
+      // The idle event is a debounced event, so we can query & listen without
+      // throwing too many requests at the server.
+      this.map.addListener("idle", () => resolve());
+    });
   }
 
   performSearch(request) {
