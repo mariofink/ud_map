@@ -11,17 +11,41 @@
 
 <body>
 
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Neighbourhood Map
-      </h1>
-      <p class="subtitle">
-        Udacity NanoDegree project by
-        <a href="//mariofink.de">Mario Fink</a>
-      </p>
+  <div class="grid-container">
+    <nav class="navbar grid-navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          Neighbourhood Map
+        </a>
+
+        <div class="navbar-burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <aside class="section grid-aside">
+      Sidebar
+    </aside>
+    <div class="grid-map">
+      <iframe class="mapframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFaWpfkrPZUWXsWfTb53Uphsp1PnV44kw
+    &q=Space+Needle,Seattle+WA" allowfullscreen>
+      </iframe>
     </div>
-  </section>
+
+    <footer class="footer grid-footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            Udacity NanoDegree project by
+            <a href="//mariofink.de">Mario Fink</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script src="js/dist/index.js"></script>
 
