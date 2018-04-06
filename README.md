@@ -1,2 +1,1 @@
-# ud_map
-Udacity NanoDegree Neighbourhood Map project
+# Udacity NanoDegree Neighbourhood Map project

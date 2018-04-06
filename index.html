@@ -30,9 +30,7 @@
       Sidebar
     </aside>
     <div class="grid-map">
-      <iframe class="mapframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFaWpfkrPZUWXsWfTb53Uphsp1PnV44kw
-    &q=Space+Needle,Seattle+WA" allowfullscreen>
-      </iframe>
+      <div id="map" class="map-view"></div>
     </div>
 
     <footer class="footer grid-footer">
@@ -47,6 +45,8 @@
     </footer>
   </div>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFaWpfkrPZUWXsWfTb53Uphsp1PnV44kw&callback=initMap&libraries=places,visualization"
+    async defer></script>
   <script src="js/dist/index.js"></script>
 
 </body>
