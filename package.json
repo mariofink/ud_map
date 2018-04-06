@@ -6,8 +6,7 @@
   "scripts": {
     "css-build": "node-sass css/src/style.scss css/dist/style.css",
     "css-deploy": "npm run css-build && npm run css-postcss",
-    "css-postcss":
-      "postcss --use autoprefixer --output css/dist/style.css css/dist/style.css",
+    "css-postcss": "postcss --use autoprefixer --output css/dist/style.css css/dist/style.css",
     "css-watch": "npm run css-build -- --watch",
     "deploy": "npm run css-deploy && webpack",
     "watch": "npm run css-watch",
@@ -30,6 +29,8 @@
   "devDependencies": {
     "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015-ie": "^6.7.0",
     "bulma": "^0.6.0",
