@@ -1,8 +1,3 @@
-var map;
-var infoWindow;
-var service;
-var geocoder;
-
 export default class MapService {
   constructor(options) {
     this.map = new google.maps.Map(options.element, {
@@ -35,7 +30,7 @@ export default class MapService {
   }
 
   addMarker(place) {
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.map,
       position: place.geometry.location
     });

@@ -12,7 +12,7 @@ window.initMap = () => {
       type: "restaurant"
     };
     myMapService.performSearch(request).then(results => {
-      for (var i = 0, result; (result = results[i]); i++) {
+      for (let i = 0, result; (result = results[i]); i++) {
         myMapService.addMarker(result);
       }
     });
