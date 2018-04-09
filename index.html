@@ -26,8 +26,16 @@
       </div>
     </nav>
 
-    <aside class="section grid-aside">
-      Sidebar
+    <aside class="location-list grid-aside">
+      <h2 class="is-size-4 location-list__title">Locations</h2>
+      <table class="table">
+        <tbody data-bind="foreach: locations">
+          <tr>
+            <td data-bind="text: name">
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </aside>
     <div class="grid-map">
       <div id="map" class="map-view"></div>
@@ -47,6 +55,7 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFaWpfkrPZUWXsWfTb53Uphsp1PnV44kw&callback=initMap&libraries=places,visualization"
     async defer></script>
+  <script src="js/vendor/knockout-3.4.2.js"></script>
   <script src="js/dist/index-built.js"></script>
 
 </body>
