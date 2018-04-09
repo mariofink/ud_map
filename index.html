@@ -26,10 +26,14 @@
       </div>
     </nav>
 
-    <aside class="location-list grid-aside">
-      <h2 class="is-size-4 location-list__title">Locations</h2>
+    <aside class="section location-list grid-aside">
+      <h2 class="is-size-4">Locations</h2>
+      <div class="field">
+        <label for="location-filter" class="label">Filter</label>
+        <input id="location-filter" class="input" data-bind="textInput: filterInput" />
+      </div>
       <table class="table">
-        <tbody data-bind="foreach: locations">
+        <tbody data-bind="foreach: filteredList">
           <tr>
             <td data-bind="text: name, click: $parent.showDetails">
             </td>

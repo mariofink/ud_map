@@ -25,7 +25,9 @@
     "url": "https://github.com/mariofink/ud_map/issues"
   },
   "homepage": "https://github.com/mariofink/ud_map#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.5"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
