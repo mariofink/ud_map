@@ -49,6 +49,10 @@ export default class MapService {
     });
   }
 
+  clickMarker(marker) {
+    google.maps.event.trigger(marker, "click");
+  }
+
   animateMarker(marker) {
     marker.setAnimation(google.maps.Animation.BOUNCE);
     window.setTimeout(() => {

@@ -28,7 +28,7 @@ export default class LocationsViewModel {
   }
   showDetails(location) {
     try {
-      google.maps.event.trigger(location.marker, "click");
+      this.mapservice.clickMarker(location.marker);
     } catch (error) {
       console.error("Error when trying to trigger Google Maps Event", error);
     }
