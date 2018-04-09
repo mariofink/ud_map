@@ -32,7 +32,7 @@
         <label for="location-filter" class="label">Filter</label>
         <input id="location-filter" class="input" data-bind="textInput: filterInput" />
       </div>
-      <table class="table">
+      <table class="table is-hoverable">
         <tbody data-bind="foreach: filteredList">
           <tr>
             <td data-bind="text: name, click: $parent.showDetails.bind($parent)">

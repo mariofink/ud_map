@@ -1,4 +1,7 @@
 .location-list {
   overflow-y: auto;
   padding-top: 0;
+  td {
+    cursor: pointer;
+  }
 }
