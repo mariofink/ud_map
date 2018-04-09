@@ -32,10 +32,12 @@ export default class MapService {
   addMarker(place) {
     place.marker = new google.maps.Marker({
       map: this.map,
+      animation: google.maps.Animation.DROP,
       position: place.geometry.location
     });
 
-    google.maps.event.addListener(place.marker, "click", () => {
+    place.marker.addListener("click", () => {
+      this.animateMarker(place.marker);
       this.service.getDetails(place, (result, status) => {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
           console.error(status);
@@ -45,5 +47,12 @@ export default class MapService {
         this.infoWindow.open(this.map, place.marker);
       });
     });
+  }
+
+  animateMarker(marker) {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    window.setTimeout(() => {
+      marker.setAnimation(null);
+    }, 2000);
   }
 }
