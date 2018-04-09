@@ -15,7 +15,7 @@ window.initMap = () => {
     };
     myMapService.performSearch(request).then(results => {
       locationsViewModel.setLocations(results);
-      for (let i = 0, result; (result = results[i]); i++) {
+      for (let result of results) {
         myMapService.addMarker(result);
       }
     });
