@@ -30,19 +30,19 @@ export default class MapService {
   }
 
   addMarker(place) {
-    const marker = new google.maps.Marker({
+    place.marker = new google.maps.Marker({
       map: this.map,
       position: place.geometry.location
     });
 
-    google.maps.event.addListener(marker, "click", () => {
+    google.maps.event.addListener(place.marker, "click", () => {
       this.service.getDetails(place, (result, status) => {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
           console.error(status);
           return;
         }
         this.infoWindow.setContent(result.name);
-        this.infoWindow.open(this.map, marker);
+        this.infoWindow.open(this.map, place.marker);
       });
     });
   }
