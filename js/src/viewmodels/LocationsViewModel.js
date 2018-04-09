@@ -1,7 +1,8 @@
 import _ from "lodash";
 
 export default class LocationsViewModel {
-  constructor() {
+  constructor(mapservice) {
+    this.mapservice = mapservice;
     this.locations = ko.observable();
     this.filterInput = ko.observable();
     this.filteredList = ko.computed(
@@ -11,18 +12,19 @@ export default class LocationsViewModel {
     this.init();
   }
   getFilteredList(input) {
-    // if a filter query has been entered, return the filtered list of locations
-    if (typeof input === "string" && input.length > 0) {
-      return _.filter(this.locations(), location => {
-        // filter case insensitive
-        return new RegExp(input, "i").test(location.name);
-      });
-    }
-    // otherwise return all locations
-    return this.locations();
+    return _.filter(this.locations(), location => {
+      // filter case insensitive
+      return new RegExp(input, "i").test(location.name);
+    });
   }
   setLocations(locations) {
     this.locations(locations);
+    this.updateMap();
+  }
+  updateMap() {
+    for (let location of this.locations()) {
+      this.mapservice.addMarker(location);
+    }
   }
   showDetails(location) {
     try {
