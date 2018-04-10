@@ -3,26 +3,31 @@ import _ from "lodash";
 export default class LocationsViewModel {
   constructor(mapservice) {
     this.mapservice = mapservice;
-    this.locations = ko.observable();
+    this.allLocations = ko.observable();
     this.filterInput = ko.observable();
-    this.filteredList = ko.computed(
-      () => this.getFilteredList(this.filterInput()),
-      this
-    );
+    this.filteredList = ko.computed(() => {
+      const list = this.getFilteredList(this.filterInput());
+      this.updateMap(list);
+      return list;
+    }, this);
     this.init();
   }
   getFilteredList(input) {
-    return _.filter(this.locations(), location => {
+    return _.filter(this.allLocations(), location => {
       // filter case insensitive
       return new RegExp(input, "i").test(location.name);
     });
   }
   setLocations(locations) {
-    this.locations(locations);
-    this.updateMap();
+    this.allLocations(locations);
   }
-  updateMap() {
-    for (let location of this.locations()) {
+  updateMap(locations) {
+    if (typeof this.allLocations() !== "undefined") {
+      for (let location of this.allLocations()) {
+        this.mapservice.removeMarker(location);
+      }
+    }
+    for (let location of locations) {
       this.mapservice.addMarker(location);
     }
   }

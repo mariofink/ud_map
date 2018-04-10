@@ -49,6 +49,12 @@ export default class MapService {
     });
   }
 
+  removeMarker(place) {
+    if (place.marker) {
+      place.marker.setMap(null);
+    }
+  }
+
   clickMarker(marker) {
     google.maps.event.trigger(marker, "click");
   }
