@@ -1,12 +1,16 @@
 export default class GoogleMapsService {
   constructor(options) {
-    this.map = new google.maps.Map(options.element, {
-      center: options.location,
-      zoom: 15
-    });
-
-    this.infoWindow = new google.maps.InfoWindow();
-    this.service = new google.maps.places.PlacesService(this.map);
+    try {
+      this.map = new google.maps.Map(options.element, {
+        center: options.location,
+        zoom: 15
+      });
+      this.infoWindow = new google.maps.InfoWindow();
+      this.service = new google.maps.places.PlacesService(this.map);
+    } catch (error) {
+      console.error(error);
+      throw "Google Maps API could not be loaded";
+    }
   }
 
   init() {
