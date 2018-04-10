@@ -1,4 +1,4 @@
-export default class MapService {
+export default class GoogleMapsService {
   constructor(options) {
     this.map = new google.maps.Map(options.element, {
       center: options.location,

@@ -1,8 +1,8 @@
-import MapService from "./services/maps";
+import GoogleMapsService from "./services/GoogleMapsService";
 import LocationsViewModel from "./viewmodels/LocationsViewModel";
 
 window.initMap = () => {
-  const myMapService = new MapService({
+  const myMapService = new GoogleMapsService({
     location: { lat: 50.5512631, lng: 9.6752945 },
     element: document.getElementById("map")
   });
