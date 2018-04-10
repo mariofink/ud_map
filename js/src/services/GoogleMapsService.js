@@ -1,14 +1,14 @@
 export default class GoogleMapsService {
-  constructor(options) {
+  constructor(api, options) {
     try {
-      this.map = new google.maps.Map(options.element, {
+      this.api = api;
+      this.map = new this.api.Map(options.element, {
         center: options.location,
         zoom: 15
       });
-      this.infoWindow = new google.maps.InfoWindow();
-      this.service = new google.maps.places.PlacesService(this.map);
+      this.infoWindow = new this.api.InfoWindow();
+      this.service = new this.api.places.PlacesService(this.map);
     } catch (error) {
-      console.error(error);
       throw "Google Maps API could not be loaded";
     }
   }
@@ -24,7 +24,7 @@ export default class GoogleMapsService {
   performSearch(request) {
     return new Promise((resolve, reject) => {
       this.service.nearbySearch(request, (results, status) => {
-        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        if (status !== this.api.places.PlacesServiceStatus.OK) {
           console.error(status);
           reject(status);
         }
@@ -34,16 +34,16 @@ export default class GoogleMapsService {
   }
 
   addMarker(place) {
-    place.marker = new google.maps.Marker({
+    place.marker = new this.api.Marker({
       map: this.map,
-      animation: google.maps.Animation.DROP,
+      animation: this.api.Animation.DROP,
       position: place.geometry.location
     });
 
     place.marker.addListener("click", () => {
       this.animateMarker(place.marker);
       this.service.getDetails(place, (result, status) => {
-        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        if (status !== this.api.places.PlacesServiceStatus.OK) {
           console.error(status);
           return;
         }
@@ -60,11 +60,11 @@ export default class GoogleMapsService {
   }
 
   clickMarker(marker) {
-    google.maps.event.trigger(marker, "click");
+    this.api.event.trigger(marker, "click");
   }
 
   animateMarker(marker) {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+    marker.setAnimation(this.api.Animation.BOUNCE);
     window.setTimeout(() => {
       marker.setAnimation(null);
     }, 2000);
