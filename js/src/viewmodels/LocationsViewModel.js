@@ -2,18 +2,24 @@ import _ from "lodash";
 
 export default class LocationsViewModel {
   constructor(mapservice) {
+    if (typeof mapservice === "undefined") {
+      throw "no mapservice passed";
+    }
     this.mapservice = mapservice;
     this.allLocations = ko.observable();
     this.filterInput = ko.observable();
     this.filteredList = ko.computed(() => {
-      const list = this.getFilteredList(this.filterInput());
-      this.updateMap(list);
+      const list = this.getFilteredList(
+        this.allLocations(),
+        this.filterInput()
+      );
+      this.updateMap(this.allLocations(), list);
       return list;
     }, this);
     this.init();
   }
-  getFilteredList(input) {
-    return _.filter(this.allLocations(), location => {
+  getFilteredList(allLocations, input) {
+    return _.filter(allLocations, location => {
       // filter case insensitive
       return new RegExp(input, "i").test(location.name);
     });
@@ -21,13 +27,13 @@ export default class LocationsViewModel {
   setLocations(locations) {
     this.allLocations(locations);
   }
-  updateMap(locations) {
-    if (typeof this.allLocations() !== "undefined") {
-      for (let location of this.allLocations()) {
+  updateMap(allLocations, filteredLocations) {
+    if (typeof allLocations !== "undefined") {
+      for (let location of allLocations) {
         this.mapservice.removeMarker(location);
       }
     }
-    for (let location of locations) {
+    for (let location of filteredLocations) {
       this.mapservice.addMarker(location);
     }
   }
