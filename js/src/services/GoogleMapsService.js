@@ -33,7 +33,7 @@ export default class GoogleMapsService {
     });
   }
 
-  addMarker(place) {
+  addMarker(place, callback) {
     place.marker = new this.api.Marker({
       map: this.map,
       animation: this.api.Animation.DROP,
@@ -47,7 +47,10 @@ export default class GoogleMapsService {
           console.error(status);
           return;
         }
-        this.infoWindow.setContent(result.name);
+        const infoWindowContent = document.createElement("div");
+        infoWindowContent.className = "map-info-window";
+        this.infoWindow.setContent(infoWindowContent);
+        callback(result, infoWindowContent);
         this.infoWindow.open(this.map, place.marker);
       });
     });

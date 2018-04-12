@@ -34,7 +34,9 @@ export default class LocationsViewModel {
       }
     }
     for (let location of filteredLocations) {
-      this.mapservice.addMarker(location);
+      this.mapservice.addMarker(location, (result, infoWindowContent) => {
+        infoWindowContent.innerHTML = result.name;
+      });
     }
   }
   showDetails(location) {
