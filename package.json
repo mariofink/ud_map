@@ -16,6 +16,12 @@
     "test": "jest",
     "start": "npm run serve"
   },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testPathIgnorePatterns": ["/node_modules/", "/vendor/"],
+    "coveragePathIgnorePatterns": ["/node_modules/", "/vendor/"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mariofink/ud_map.git"
