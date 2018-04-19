@@ -18,7 +18,3 @@ window.initMap = () => {
     });
   });
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Hello Bulma!");
-});
