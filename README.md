@@ -20,3 +20,9 @@ As required by the project outline, all JavaScript and CSS files come pre-built 
     npm start
 
 You can then access it at http://127.0.0.1:8080/
+
+## Building the application
+
+You can build both JavaScript and CSS files by running
+
+    npm run deploy
