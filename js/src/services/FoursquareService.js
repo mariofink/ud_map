@@ -1,6 +1,7 @@
 import axios from "axios";
 const CLIENT_ID = "GULEUYNVU3CGUYPN1AKAA122AKFSZZB2XTYUFMA1ML2EWZIC";
 const CLIENT_SECRET = "K3U3UPHUSRBQQEN0MBOLI1LVW5DDI22UYCDEBUBWAPJPCPNV";
+const BASE_URL = "https://api.foursquare.com/v2/venues/";
 
 export default class FoursquareService {
   constructor() {}
@@ -8,7 +9,7 @@ export default class FoursquareService {
   searchVenueAtLocation(location) {
     return new Promise((resolve, reject) => {
       axios
-        .get("https://api.foursquare.com/v2/venues/search", {
+        .get(BASE_URL + "/search", {
           params: {
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
@@ -24,7 +25,8 @@ export default class FoursquareService {
             reject("no venue found");
           }
           resolve(response.data.response.venues[0]);
-        });
+        })
+        .catch(error => reject(error));
     });
   }
 
@@ -33,7 +35,7 @@ export default class FoursquareService {
       this.searchVenueAtLocation(location)
         .then(venue => {
           axios
-            .get(`https://api.foursquare.com/v2/venues/${venue.id}`, {
+            .get(`${BASE_URL}${venue.id}`, {
               params: {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
