@@ -1,4 +1,5 @@
 import _ from "lodash";
+import FoursquareService from "../services/FoursquareService";
 
 export default class LocationsViewModel {
   constructor(mapservice) {
@@ -6,6 +7,7 @@ export default class LocationsViewModel {
       throw "no mapservice passed";
     }
     this.mapservice = mapservice;
+    this.foursquareService = new FoursquareService();
     this.allLocations = ko.observable();
     this.filterInput = ko.observable();
     this.filteredList = ko.computed(() => {
@@ -35,7 +37,29 @@ export default class LocationsViewModel {
     }
     for (let location of filteredLocations) {
       this.mapservice.addMarker(location, (result, infoWindowContent) => {
-        infoWindowContent.innerHTML = result.name;
+        const venueName = document.createElement("h3");
+        venueName.innerHTML = result.name;
+        infoWindowContent.appendChild(venueName);
+        const rating = document.createElement("p");
+        rating.innerHTML = `Loading Foursquare rating…`;
+        infoWindowContent.appendChild(rating);
+        this.foursquareService
+          .getVenueDetails(result)
+          .then(venue => {
+            console.log("venue:", venue);
+            if (
+              typeof venue === "undefined" ||
+              typeof venue.rating === "undefined"
+            ) {
+              rating.innerHTML = "No rating available";
+              return;
+            }
+            rating.innerHTML = `Rating: ${venue.rating} of 10`;
+          })
+          .catch(error => {
+            console.warn(error);
+            rating.innerHTML = "No rating available";
+          });
       });
     }
   }

@@ -6,8 +6,7 @@
   "scripts": {
     "css-build": "node-sass css/src/style.scss css/dist/style.css",
     "css-deploy": "npm run css-build && npm run css-postcss",
-    "css-postcss":
-      "postcss --use autoprefixer --output css/dist/style.css css/dist/style.css",
+    "css-postcss": "postcss --use autoprefixer --output css/dist/style.css css/dist/style.css",
     "css-watch": "npm run css-build -- --watch",
     "deploy": "npm run css-deploy && webpack",
     "watch": "npm run css-watch",
@@ -19,8 +18,14 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "testPathIgnorePatterns": ["/node_modules/", "/vendor/"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "/vendor/"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/vendor/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/vendor/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -34,6 +39,7 @@
   },
   "homepage": "https://github.com/mariofink/ud_map#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "lodash": "^4.17.5"
   },
   "devDependencies": {
