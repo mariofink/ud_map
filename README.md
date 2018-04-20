@@ -17,6 +17,7 @@ The application uses two APIs through two service classes:
 
 As required by the project outline, all JavaScript and CSS files come pre-built with this repository. To run, execute the start task like so:
 
+    npm install
     npm start
 
 You can then access it at http://127.0.0.1:8080/
