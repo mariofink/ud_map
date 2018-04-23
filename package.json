@@ -40,6 +40,7 @@
   "homepage": "https://github.com/mariofink/ud_map#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "bulma": "^0.7.1",
     "lodash": "^4.17.5"
   },
   "devDependencies": {
@@ -49,12 +50,11 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015-ie": "^6.7.0",
-    "bulma": "^0.6.0",
     "http-server": "^0.11.1",
     "jest": "^22.4.3",
     "node-sass": "^4.8.3",
     "postcss-cli": "^4.1.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
   }
 }
