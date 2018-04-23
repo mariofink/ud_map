@@ -44,7 +44,11 @@
       </table>
     </aside>
     <div class="grid-map">
-      <div id="map" class="map-view"></div>
+      <div id="map" class="map-view">
+        <div class="notification is-danger" id="maps-error" style="display: none;">
+          Google Maps could not be reached. Please try again later…
+        </div>
+      </div>
     </div>
 
     <footer class="footer grid-footer">
@@ -60,7 +64,7 @@
   </div>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFaWpfkrPZUWXsWfTb53Uphsp1PnV44kw&callback=initMap&libraries=places,visualization"
-    async defer></script>
+    async defer onerror="onMapsError()"></script>
 
 </body>
 
