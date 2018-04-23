@@ -6,6 +6,11 @@ const BASE_URL = "https://api.foursquare.com/v2/venues/";
 export default class FoursquareService {
   constructor() {}
 
+  /**
+   * tries to match a Google Maps location with a Foursquare venue
+   * @param {*} location
+   * @returns Promise
+   */
   searchVenueAtLocation(location) {
     return new Promise((resolve, reject) => {
       axios
@@ -30,6 +35,11 @@ export default class FoursquareService {
     });
   }
 
+  /**
+   * get details for a specific venue
+   * @param {*} location
+   * @returns Promise
+   */
   getVenueDetails(location) {
     return new Promise((resolve, reject) => {
       this.searchVenueAtLocation(location)

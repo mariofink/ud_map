@@ -21,6 +21,11 @@ export default class GoogleMapsService {
     });
   }
 
+  /**
+   * Promise-wrapper for the nearbySearch API method
+   * @param {*} request
+   * @returns Promise
+   */
   performSearch(request) {
     return new Promise((resolve, reject) => {
       this.service.nearbySearch(request, (results, status) => {
@@ -33,6 +38,11 @@ export default class GoogleMapsService {
     });
   }
 
+  /**
+   * Add a marker to the map at a specified location and set up an event to load details
+   * @param {*} place
+   * @param {*} callback
+   */
   addMarker(place, callback) {
     place.marker = new this.api.Marker({
       map: this.map,

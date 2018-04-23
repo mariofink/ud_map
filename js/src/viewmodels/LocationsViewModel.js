@@ -1,7 +1,12 @@
 import _ from "lodash";
 import FoursquareService from "../services/FoursquareService";
+import GoogleMapsService from "../services/GoogleMapsService";
 
 export default class LocationsViewModel {
+  /**
+   * Init the location list UI
+   * @param {GoogleMapsService} mapservice
+   */
   constructor(mapservice) {
     if (typeof mapservice === "undefined") {
       throw "no mapservice passed";
@@ -29,6 +34,12 @@ export default class LocationsViewModel {
   setLocations(locations) {
     this.allLocations(locations);
   }
+  /**
+   * Triggered when the list of locations changes
+   * Adds a marker for each location and sets up a callback function that gets triggered when a marker is clicked
+   * @param {*} allLocations
+   * @param {*} filteredLocations
+   */
   updateMap(allLocations, filteredLocations) {
     if (typeof allLocations !== "undefined") {
       for (let location of allLocations) {
@@ -63,6 +74,11 @@ export default class LocationsViewModel {
       });
     }
   }
+  /**
+   * Called when the user clicks an item in the location list.
+   * The event is handed over to the Google Maps API service
+   * @param {*} location
+   */
   showDetails(location) {
     try {
       this.mapservice.clickMarker(location.marker);
